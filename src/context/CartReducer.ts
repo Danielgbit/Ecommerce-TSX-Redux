@@ -1,19 +1,53 @@
 export const initialState = {
     cartItems: []
-}
+};
 
-export const cartReducer = (state, action) => {
-    switch(action) {
+export const cartReducer = (state = initialState, action) => {
+    switch (action.type) {  // Debes acceder a `action.type` para determinar el tipo de acción
         case 'ADD_TO_CART': {
-            const { id } = action.payload
-        }
+            const { id } = action.payload;
 
-        const existingItem = state.cartItems.find((item) => item.id === id);
+            const existingItem = state.cartItems.find((item) => item.id === id);
 
-        if (existingItem) {
-            return {
-                ...state
+            if (existingItem) {
+                return {
+                    ...state,
+                    cartItems: state.cartItems.map((item) =>
+                        item.id === id
+                            ? { ...item, quantity: item.quantity + 1 }  // Corregido: incrementar la cantidad
+                            : item
+                    )
+                };
+            } else {
+                // Si el item no existe en el carrito, lo añadimos con cantidad 1
+                return {
+                    ...state,
+                    cartItems: [...state.cartItems, { ...action.payload, quantity: 1 }]
+                };
             }
         }
-    }
+
+
+        case 'REMOVE_FROM_CART': {
+            const { id } = action.payload;
+
+            // Filtramos los ítems para excluir el que tiene el ID proporcionado
+            return {
+                ...state,
+                cartItems: state.cartItems.filter((item) => item.id !== id)
+            };
+        }
+
+        case 'CLEAR_CART': {
+            // Limpiamos todo el carrito
+            return {
+                ...state,
+                cartItems: [] // Devolvemos un array vacío
+            };
+        }
+
+        default:
+            return state; // Si la acción no es reconocida, devolvemos el estado actual
+    }        
+
 };

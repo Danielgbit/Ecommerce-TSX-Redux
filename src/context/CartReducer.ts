@@ -5,7 +5,15 @@ export const initialState = {
 export const cartReducer = (state, action) => {
     switch(action) {
         case 'ADD_TO_CART': {
-            const {  } = action.payload
+            const { id } = action.payload
+        }
+
+        const existingItem = state.cartItems.find((item) => item.id === id);
+
+        if (existingItem) {
+            return {
+                ...state
+            }
         }
     }
 };

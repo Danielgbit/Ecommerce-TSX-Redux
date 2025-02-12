@@ -2,7 +2,7 @@ export const initialState = {
     cartItems: []
 };
 
-export const cartReducer = (state = initialState, action) => {
+export const CartReducer = (state = initialState, action) => {
     switch (action.type) {  // Debes acceder a `action.type` para determinar el tipo de acción
         case 'ADD_TO_CART': {
             const { id } = action.payload;

@@ -1,3 +1,4 @@
 import { createContext } from "react";
 
-export const cartContext = createContext(null);
+const CartContext = createContext(null); // Declaración
+export default CartContext; // Exportación por defecto

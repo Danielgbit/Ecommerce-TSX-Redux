@@ -1,10 +1,14 @@
 import styles from "./CartModal.module.css";
 import closeImg from '../../../assets/close.svg'
 import { FC } from "react";
+import useCartContext from "../../../hooks/useCartContext";
+
 
 interface Props{
   handleShowCartModal : () => void
 };
+
+const {state} = useCartContext();
 
 const CardModal: FC<Props> = ({ handleShowCartModal }) => {
   return (

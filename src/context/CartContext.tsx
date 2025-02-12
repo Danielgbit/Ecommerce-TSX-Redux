@@ -1,4 +1,15 @@
-import { createContext } from "react";
+import { createContext, Dispatch } from "react";
 
-const CartContext = createContext(null); // Declaración
-export default CartContext; // Exportación por defecto
+interface CartState {
+  dispatch: Dispatch<{ type: string; payload?: any }>;
+}
+
+const defaultCartState: CartState = {
+  dispatch: () => {
+    throw new Error("CartContext debe ser usado dentro de un CartProvider");
+  }
+};
+
+const CartContext = createContext<CartState>(defaultCartState); 
+
+export default CartContext;

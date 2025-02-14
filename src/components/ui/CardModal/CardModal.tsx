@@ -1,19 +1,18 @@
 import styles from "./CartModal.module.css";
 import closeImg from '../../../assets/close.svg'
 import { FC } from "react";
-import useCartContext from "../../../hooks/useCartContext";
+import { useCartContext } from "../../../hooks/useCartContext"; // Ensure correct import
 
-
-interface Props{
-  handleShowCartModal : () => void
-};
-
-const {state} = useCartContext();
+interface Props {
+  handleShowCartModal: () => void;
+}
 
 const CardModal: FC<Props> = ({ handleShowCartModal }) => {
+  const { state } = useCartContext(); // Use the hook inside the component
+
   return (
     <div className={styles.modalContainer}>
-      <button className={styles.modalCloseButton} onClick={handleShowCartModal} >
+      <button className={styles.modalCloseButton} onClick={handleShowCartModal}>
         <img src={closeImg} alt="Close" />
       </button>
       <table className={styles.modalTable}>

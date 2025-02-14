@@ -19,6 +19,7 @@ const router = createBrowserRouter([
   },
 ]);
 
+
 // Renderiza la aplicación
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

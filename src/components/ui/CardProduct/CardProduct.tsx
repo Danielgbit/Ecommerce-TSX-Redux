@@ -1,22 +1,21 @@
 import { FC } from 'react';
 import styles from './CardProduct.module.css';
 import { Products } from '../../../interface';
-import useCartContext from '../../../hooks/useCartContext';
+import { useCartContext } from '../../../hooks/useCartContext'; // Importación corregida
 
 interface Props {
-  product: Products
-};
+  product: Products;
+}
 
 const CardProduct: FC<Props> = ({ product }) => {
-
-  const { dispatch } = useCartContext();
+  const { dispatch } = useCartContext(); // Usa el hook correctamente
 
   const item = {
     id: product.tail,
     name: product.name,
     image: product.image,
-    quantity: 1
-  }
+    quantity: 1,
+  };
 
   const addToCart = () => {
     dispatch({ type: 'ADD_TO_CART', payload: item });
@@ -33,7 +32,9 @@ const CardProduct: FC<Props> = ({ product }) => {
             price, <small>{product.price}</small>
           </p>
         </div>
-        <button className={styles.cardButton} onClick={addToCart}>add to cart</button>
+        <button className={styles.cardButton} onClick={addToCart}>
+          add to cart
+        </button>
       </div>
     </div>
   );

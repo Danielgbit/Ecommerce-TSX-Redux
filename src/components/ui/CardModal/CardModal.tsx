@@ -1,12 +1,26 @@
 import styles from "./CartModal.module.css";
 import closeImg from '../../../assets/close.svg'
 import { FC } from "react";
+import { useCartContext } from "../../../hooks/useCartContext";
+import { CartProduct } from "../../../interface";
 
 interface Props{
   handleShowCartModal : () => void 
 };
 
 const CardModal: FC<Props> = ({ handleShowCartModal }) => {
+
+  const { state: {cartItems}, dispatch } = useCartContext();
+
+  console.log(cartItems);
+  
+  const handleOnRemove = (item: CartProduct) => {
+    dispatch({ type: 'REMOVE_FROM_CART', payload: item });
+  };
+
+  const handleAddProductInCart = (item: CartProduct) => {
+    dispatch({ type: 'ADD_TO_CART', payload: item});
+  };
 
   return (
     <div className={styles.modalContainer}>
@@ -23,16 +37,18 @@ const CardModal: FC<Props> = ({ handleShowCartModal }) => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>name</td>
+          {cartItems.map((item) => (
+          <tr key={item.id}>
+            <td>{item.name}</td>
             <td>
-              <button className={styles.modalButtonRemove}>-1</button>
+              <button onClick={() => handleOnRemove(item)} className={styles.modalButtonRemove}>-1</button>
             </td>
-            <td>12</td>
+            <td>{item.quantity}</td>
             <td>
-              <button className={styles.modalButtonAdd}>+1</button>
+              <button onClick={() => handleAddProductInCart(item)} className={styles.modalButtonAdd}>+1</button>
             </td>
           </tr>
+          ))}
         </tbody>
       </table>
       <div className={styles.modalTotalContainer}>

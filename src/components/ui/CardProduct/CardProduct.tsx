@@ -1,20 +1,22 @@
 import { FC } from 'react';
 import styles from './CardProduct.module.css';
-import { Products } from '../../../interface';
+import { Product, CartProduct } from '../../../interface/index';
 import { useCartContext } from '../../../hooks/useCartContext'; // Importación corregida
 
 interface Props {
-  product: Products;
+  product: Product;
 }
 
 const CardProduct: FC<Props> = ({ product }) => {
+
   const { dispatch } = useCartContext(); // Usa el hook correctamente
 
-  const item = {
-    id: product.tail,
+  const item: CartProduct = {
+    id: product.id,
     name: product.name,
     image: product.image,
     quantity: 1,
+    price: product.price
   };
 
   const addToCart = () => {

@@ -1,15 +1,10 @@
 import { createContext, Dispatch } from "react";
+import { CartAction, CartState } from "./CartReducer";
 
-interface CartState {
-  dispatch: Dispatch<{ type: string; payload?: any }>;
+interface CartContextType {
+  state: CartState,
+  dispatch:  Dispatch<CartAction>
 }
 
-const defaultCartState: CartState = {
-  dispatch: () => {
-    throw new Error("CartContext debe ser usado dentro de un CartProvider");
-  }
-};
 
-const CartContext = createContext<CartState>(defaultCartState); 
-
-export default CartContext;
+export const CartContext = createContext({} as CartContextType);

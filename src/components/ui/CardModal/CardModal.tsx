@@ -12,14 +12,19 @@ const CardModal: FC<Props> = ({ handleShowCartModal }) => {
 
   const { state: {cartItems}, dispatch } = useCartContext();
 
-  console.log(cartItems);
-  
   const handleOnRemove = (item: CartProduct) => {
     dispatch({ type: 'REMOVE_FROM_CART', payload: item });
   };
 
   const handleAddProductInCart = (item: CartProduct) => {
     dispatch({ type: 'ADD_TO_CART', payload: item});
+  };
+
+  const totalPay = () => {
+    const total = cartItems.reduce((accum, item) => {
+          return accum + item.price * item.quantity
+    }, 0);
+    return total
   };
 
   return (
@@ -52,7 +57,7 @@ const CardModal: FC<Props> = ({ handleShowCartModal }) => {
         </tbody>
       </table>
       <div className={styles.modalTotalContainer}>
-        <h3>TOTAL: 500.00</h3>
+        <h3>${totalPay()}</h3>
       </div>
       <div>
         <button className={styles.modalButtonContainer}>checkout</button>

@@ -2,7 +2,7 @@ import styles from './Navbar.module.css'
 import logo from '../../../assets/logo.svg'
 import cart from '../../../assets/cart.svg'
 import { useState } from 'react'
-import CardModal from '../CardModal/CardModal'
+import CardModal from '../CartModal/CartModal'
 import { useCartContext } from '../../../hooks/useCartContext'
 
 const Navbar = () => {

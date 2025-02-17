@@ -1,12 +1,12 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../ui/Navbar/Navbar";
-import CardModal from "../ui/CardModal/CardModal";
+import CartModal from "../ui/CartModal/CartModal";
 
 const LayoutMain = () => {
   return (
     <>
       <Navbar />
-      <CardModal />
+      <CartModal />
       <Outlet />
     </>
   );

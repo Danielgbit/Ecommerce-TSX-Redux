@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import Hero from "../../components/ui/Hero/Hero"
 import styles from "./Home.module.css";
-import CardProduct from "../../components/ui/CardProduct/CardProduct";
+import CardProduct from "../../components/ui/CartProduct/CardProduct";
 import { getProducts } from "../../services";
 import { Product } from "../../interface/index";
 

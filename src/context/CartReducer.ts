@@ -1,21 +1,21 @@
 import { CartProduct } from "../interface";
 
     
-    interface CartState {
+    export interface CartState {
         cartItems: CartProduct[]
     };
 
-    interface CartAction {
+   export  interface CartAction {
         type: 'ADD_TO_CART' | 'REMOVE_FROM_CART' | 'CLEAR_CART',
         payload: CartProduct
     };
     
     
-    export const initialState = {
+    export const initialState: CartState = {
         cartItems: [],
       };
 
-    export const CartReducer = (state: CartState = initialState, action: CartAction) => {
+    export const CartReducer = (state = initialState, action: CartAction) => {
         switch (action.type) {  // Debes acceder a `action.type` para determinar el tipo de acción
             case 'ADD_TO_CART': {
 

@@ -1,8 +1,11 @@
-import { createContext } from "react";
+import { createContext, Dispatch } from "react";
+import { CartAction, CartState } from "./CartReducer";
 
-const CartContext = createContext({
-  state: { cartItems: [] }, // Valor por defecto del estado
-  dispatch: () => {}, // Función por defecto de dispatch
-});
+interface CartContextType {
+  state: CartState,
+  dispatch: Dispatch<CartAction>
+}
+
+const CartContext = createContext({} as CartContextType);
 
 export default CartContext;

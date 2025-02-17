@@ -1,9 +1,12 @@
-import React, { useReducer } from "react";
+import React, { FC, ReactNode, useReducer } from "react";
 import CartContext from "./CartContext";
 import { CartReducer, initialState } from "./CartReducer";
 
-const CartProvider: React.FC = ({ children }) => {
-  // Usa useReducer para manejar el estado y las acciones
+interface CartProviderType {
+  children: ReactNode
+};
+
+const CartProvider: FC<CartProviderType> = ({ children }) => {
   const [state, dispatch] = useReducer(CartReducer, initialState);
 
   return (

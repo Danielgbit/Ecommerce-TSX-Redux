@@ -8,7 +8,10 @@ interface Props {
 }
 
 const CardModal: FC<Props> = ({ handleShowCartModal }) => {
-  const { state } = useCartContext(); // Use the hook inside the component
+  const { state  } = useCartContext(); // Use the hook inside the component
+
+  console.log(state);
+  
 
   return (
     <div className={styles.modalContainer}>

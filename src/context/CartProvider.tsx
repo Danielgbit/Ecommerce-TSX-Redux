@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useReducer } from "react";
+import { FC, ReactNode, useReducer } from "react";
 import { CartReducer, initialState } from "./CartReducer";
 import { CartContext } from "./CartContext";
 

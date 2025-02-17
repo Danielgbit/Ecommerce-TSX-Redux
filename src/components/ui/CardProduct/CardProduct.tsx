@@ -12,11 +12,11 @@ const CardProduct: FC<Props> = ({ product }) => {
   const { dispatch } = useCartContext(); // Usa el hook correctamente
 
   const item: CartProduct = {
+    id: product.id,
     name: product.name,
     image: product.image,
-    price: product.price,
-    id: product.id,
-    quantity: product.quantity
+    quantity: 1,
+    price: product.price
   };
 
   const addToCart = () => {

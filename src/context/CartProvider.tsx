@@ -1,6 +1,6 @@
 import React, { FC, ReactNode, useReducer } from "react";
-import CartContext from "./CartContext";
 import { CartReducer, initialState } from "./CartReducer";
+import { CartContext } from "./CartContext";
 
 interface CartProviderType {
   children: ReactNode

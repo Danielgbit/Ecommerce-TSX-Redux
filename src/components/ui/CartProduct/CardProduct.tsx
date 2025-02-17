@@ -1,7 +1,9 @@
 import styles from './CardProduct.module.css';
 import { useCartContext } from '../../../hooks/useCartContext';
-import { Product, CartProduct } from '../../../interface';
+import { CartProduct, Product } from '../../../interface';
 import { FC } from 'react';
+import { toast } from 'sonner';
+
 
 interface Props {
   product: Product
@@ -20,7 +22,8 @@ const CartProduct: FC<Props> = ({ product }) => {
   };
 
   const addToCart = () => {
-    dispatch({ type: 'ADD_TO_CART', payload: item });
+    dispatch({ type: 'ADD_TO_CART', payload: item })
+    toast.message('Product Added to cart');
   };
 
   return (

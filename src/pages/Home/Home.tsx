@@ -4,6 +4,7 @@ import styles from "./Home.module.css";
 import CardProduct from "../../components/ui/CartProduct/CardProduct";
 import { getProducts } from "../../services";
 import { Product } from "../../interface/index";
+import { Toaster} from 'sonner';
 
 
 const Home = () => {
@@ -30,6 +31,7 @@ const Home = () => {
   return (
     <>
       <Hero/>
+      <Toaster />
       {loading && <p>LOADING...</p>}
       {error && <p>Productos no encontrados</p>}
       <div className={styles.container}>

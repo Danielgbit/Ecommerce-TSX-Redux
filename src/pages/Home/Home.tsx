@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react"
 import Hero from "../../components/ui/Hero/Hero"
 import styles from "./Home.module.css";
-import CardProduct from "../../components/ui/CardProduct/CardProduct";
+import CardProduct from "../../components/ui/CartProduct/CardProduct";
 import { getProducts } from "../../services";
-import { Products } from "../../interface";
+import { Product } from "../../interface/index";
+import { Toaster} from 'sonner';
 
 
 const Home = () => {
 
-  const [ products, setProducts ] = useState<Products[]>([]);
+  const [ products, setProducts ] = useState<Product[]>([]);
   const [ error, setError ] = useState(false);
   const [ loading, setLoading ] = useState(true);
 
@@ -30,6 +31,7 @@ const Home = () => {
   return (
     <>
       <Hero/>
+      <Toaster />
       {loading && <p>LOADING...</p>}
       {error && <p>Productos no encontrados</p>}
       <div className={styles.container}>

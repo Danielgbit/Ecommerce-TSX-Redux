@@ -9,9 +9,9 @@ const Navbar = () => {
 
   const [showCartModal, setShowCartModal] = useState(false);
 
-  const handleShowCartModal = () => {
-    setShowCartModal(!showCartModal);
-  };
+  const isModalOpen = () => setShowCartModal(true);
+  const isModalClose = () => setShowCartModal(false);
+
 
   const {state} = useCartContext();
 
@@ -25,7 +25,7 @@ const Navbar = () => {
           <p className={styles.navbarTextAmount}>{state.cartItems.length}</p>
           <img src={cart} alt="Logo carrito"/>
         </div>
-        {showCartModal && (<CardModal handleShowCartModal={handleShowCartModal} />)}
+        <CardModal/>
     </div>
   )
 }

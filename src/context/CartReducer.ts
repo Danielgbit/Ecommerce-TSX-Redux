@@ -50,10 +50,36 @@ export const CartReducer = (state: CartState, action: CartAction ): CartState =>
 
       const { id } = action.payload;
 
+      const product = state.cartItems.find((item) => item.id === id);
+      
+      if (!product) {
+        return state
+      };
+
+      const updateProduct = {
+        ...product,
+        quantity: product.quantity - 1
+      }
+
+      // Si la cantidad llega a 0, eliminamos el producto del carrito
+
+      const updateCartProducts = updateProduct.quantity <= 0 
+        ? 
+          state.cartItems.filter((item) => {
+            item.id !== id
+          }) 
+        : 
+        state.cartItems.map((item) => 
+          { 
+            item.id === id ? updateProduct : item 
+          });
+      
+      
+
       // Filtramos los ítems para excluir el que tiene el ID proporcionado
       return {
         ...state,
-        cartItems: state.cartItems.filter((item) => item.id !== id),
+        cartItems: updateCartProducts
       };
     }
 

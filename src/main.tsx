@@ -4,8 +4,8 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom"; // Asegúrate de importar RouterProvider
 import LayoutMain from "./components/Layouts/LayoutMain.tsx";
 import Home from "./pages/Home/Home.tsx"; // Importa Home desde su archivo
-import Cart from "./pages/Cart.tsx"; // Importa Cart desde su archivo
 import CartProvider from "./context/CartProvider.tsx";
+import Checkout from "./pages/Checkout/Checkout.tsx";
 
 // Configuración del enrutador
 const router = createBrowserRouter([

@@ -50,17 +50,10 @@ export const CartReducer = (state: CartState, action: CartAction ): CartState =>
 
       const { id } = action.payload;
 
-<<<<<<< HEAD
-      const product = state.cartItems.find((item) => item.id === id);
-      
-      if (!product) {
-        return state
-=======
       const product = state.cartItems.find((product) =>  product.id === id);
 
       if (!product) {
         return state;
->>>>>>> e3f2ce01e6ef3a35679a4b80cef5a7333d0ffb34
       };
 
       const updateProduct = {
@@ -68,27 +61,6 @@ export const CartReducer = (state: CartState, action: CartAction ): CartState =>
         quantity: product.quantity - 1
       }
 
-<<<<<<< HEAD
-      // Si la cantidad llega a 0, eliminamos el producto del carrito
-
-      const updateCartProducts = updateProduct.quantity <= 0 
-        ? 
-          state.cartItems.filter((item) => {
-            item.id !== id
-          }) 
-        : 
-        state.cartItems.map((item) => 
-          { 
-            item.id === id ? updateProduct : item 
-          });
-      
-      
-
-      // Filtramos los ítems para excluir el que tiene el ID proporcionado
-      return {
-        ...state,
-        cartItems: updateCartProducts
-=======
       const cartProductUpdate = product.quantity <= 1 
       ? 
         state.cartItems.filter((item) => item.id !== id)
@@ -100,7 +72,6 @@ export const CartReducer = (state: CartState, action: CartAction ): CartState =>
       return {
         ...state,
         cartItems: cartProductUpdate
->>>>>>> e3f2ce01e6ef3a35679a4b80cef5a7333d0ffb34
       };
     }
 

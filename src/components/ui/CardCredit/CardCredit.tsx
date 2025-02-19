@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import styles from './CardCredit.module.css'
-import Cards from 'react-credit-cards-2';
 import 'react-credit-cards-2/dist/es/styles-compiled.css';
 import { toast } from 'sonner';
 import { useCartContext } from '../../../hooks/useCartContext';
-import CartProduct from '../CartProduct/CardProduct';
 import { CartProduct } from '../../../interface';
+import Cards from 'react-credit-cards-2';
+
 
 const CardCredit = () => {
 

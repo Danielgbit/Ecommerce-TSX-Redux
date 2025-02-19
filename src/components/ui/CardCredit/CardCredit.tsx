@@ -2,8 +2,14 @@ import { useState } from 'react';
 import styles from './CardCredit.module.css'
 import Cards from 'react-credit-cards-2';
 import 'react-credit-cards-2/dist/es/styles-compiled.css';
+import { toast } from 'sonner';
+import { useCartContext } from '../../../hooks/useCartContext';
+import CartProduct from '../CartProduct/CardProduct';
+import { CartProduct } from '../../../interface';
 
 const CardCredit = () => {
+
+  const { dispatch } = useCartContext();
 
   const [cardData, setCardData] = useState({
     number: '',
@@ -31,9 +37,10 @@ const CardCredit = () => {
     e.preventDefault();
     const { name, cvc, number, expiry} = cardData;
 
-    if([name, cvc, number, expiry].includes('')){
-      return
-    };
+    if (![name, cvc, number, expiry].every((field) => field && field.trim() !== "")) {
+      toast.error('All fields are required');
+      return;
+    }
 
     setCardData({
       number: '',
@@ -42,7 +49,12 @@ const CardCredit = () => {
       cvc: '',
       focused: ''
     })
+
+    dispatch({ type: 'CLEAR_CART', payload: {} as CartProduct})
+
   }
+
+  
 
   const { name, cvc, number, expiry, focused} = cardData;
 
@@ -66,6 +78,8 @@ const CardCredit = () => {
                   type="text" 
                   name='number' 
                   id='number'
+                  value={number}
+                  onFocus={handleInputFocus}
                   onChange={handleInputChange}
                 />
             </div>
@@ -75,7 +89,10 @@ const CardCredit = () => {
                   type="text" 
                   name='name' 
                   id='name'
+                  value={name}
                   onChange={handleInputChange}
+                  onFocus={handleInputFocus}
+
                 />
             </div>
             <div className={styles.formInputGrup}>
@@ -85,7 +102,10 @@ const CardCredit = () => {
                   type="text" 
                   name='expiry' 
                   id='expiry'
+                  value={expiry}
                   onChange={handleInputChange}
+                  onFocus={handleInputFocus}
+
                 />
               </div>
               <div className={styles.formControl}>
@@ -94,12 +114,15 @@ const CardCredit = () => {
                   type="text" 
                   name='cvc' 
                   id='cvc'
+                  value={cvc}
                   onChange={handleInputChange}
+                  onFocus={handleInputFocus}
+
                 />
               </div>
             </div>
+          <button type="submit" className={styles.buyButton} >Buy now</button>
         </form>
-          <button className={styles.buyButton} >Buy now</button>
     </div>
   )
 }

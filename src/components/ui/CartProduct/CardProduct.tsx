@@ -1,6 +1,6 @@
 import styles from './CardProduct.module.css';
 import { useCartContext } from '../../../hooks/useCartContext';
-import { CartProduct, Product } from '../../../interface';
+import { Product } from '../../../interface';
 import { FC } from 'react';
 import { toast } from 'sonner';
 

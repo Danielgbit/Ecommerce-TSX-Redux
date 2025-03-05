@@ -1,14 +1,10 @@
 import axios from "axios";
 import { Product } from '../interface';
 
-export const getProducts = async (page = 1): Promise<Product[]> => {
+export const getProducts = async (page = 0): Promise<Product[]> => {
   try {
-    const res = await axios.get(`http://localhost:4000/products`, {
-      params: {
-        _page: page, // Usar `page` directamente (comienza en 1)
-        _limit: 10,   // Límite de 10 productos por página
-      },
-    });
+
+    const res = await axios.get(`http://localhost:3000/products?_page=${page}&_limit=4`);
 
     // Verifica si la respuesta contiene datos
     if (!res.data || res.data.length === 0) {

@@ -7,13 +7,13 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
 const Home = () => {
-  const [page, setPage] = useState(1); // Cambia a 1
+  const [page, setPage] = useState(1);
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['products', page],
-    queryFn: () => getProducts(page),
-    placeholderData: (previousData) => previousData || [], // Evita errores si no hay datos
+    queryFn: () => fetch(page)
   });
+
 
   return (
     <>
@@ -29,16 +29,14 @@ const Home = () => {
       <div>
         <button 
           onClick={() => setPage(page - 1)} 
-          disabled={page === 0} // Deshabilita si es la primera página
         >
           Previous Page
         </button>
         <div>
-          <span>Página: {page + 1}</span> {/* Muestra la página actual (empezando desde 1) */}
+          <span>Página: {page + 1}</span>
         </div>
         <button 
           onClick={() => setPage(page + 1)}
-          // Deshabilita si no hay más páginas (depende de tu API)
           disabled={data && data.length === 0} 
         >
           Next Page

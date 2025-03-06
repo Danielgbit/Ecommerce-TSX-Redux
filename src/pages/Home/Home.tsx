@@ -11,7 +11,7 @@ const Home = () => {
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['products', page],
-    queryFn: () => fetch(page)
+    queryFn: () => getProducts(page)
   });
 
 
@@ -22,9 +22,13 @@ const Home = () => {
       {isLoading && <p>LOADING...</p>}
       {error && <p>Productos no encontrados</p>}
       <div className={styles.container}>
-        {data?.map((product) => (
-          <CardProduct key={product.tail} product={product} />
-        ))}
+        {data && data.length > 0 ? (
+          data.map((product) => (
+            <CardProduct key={product.id} product={product} />
+          ))
+        ) : (
+          <h1>No hay productos</h1>
+        )}
       </div>
       <div>
         <button 

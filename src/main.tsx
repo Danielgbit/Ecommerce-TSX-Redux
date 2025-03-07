@@ -7,11 +7,12 @@ import Home from "./pages/Home/Home.tsx"; // Importa Home desde su archivo
 import CartProvider from "./context/CartProvider.tsx";
 import Checkout from "./pages/Checkout/Checkout.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const queryClient = new QueryClient();
 
 // Configuración del enrutador
-const router = createBrowserRouter([
+ const router = createBrowserRouter([
   {
     path: "/",
     element: <LayoutMain />,
@@ -28,6 +29,7 @@ createRoot(document.getElementById("root")!).render(
     <QueryClientProvider client={queryClient}>
       <CartProvider>
         <RouterProvider router={router} /> {/* Usa RouterProvider aquí */}
+        <ReactQueryDevtools/>
       </CartProvider>
     </QueryClientProvider>
   </StrictMode>

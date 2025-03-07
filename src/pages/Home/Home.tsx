@@ -37,15 +37,17 @@ const Home = () => {
         )}
       </div>
 
-      <div>
+      <div className={styles.paginationContainer}>
         <button
           onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+          className={styles.paginationButton}
         >
           Previous Page
         </button>
-        <span>Página: {page}</span>
+          <span className={styles.paginationActive}>{page}</span>
         <button
           onClick={() => setPage((prev) => prev + 1)}
+          className={styles.paginationButton}
         >
           Next Page
         </button>

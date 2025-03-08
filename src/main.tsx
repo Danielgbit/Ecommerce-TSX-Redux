@@ -8,6 +8,8 @@ import CartProvider from "./context/CartProvider.tsx";
 import Checkout from "./pages/Checkout/Checkout.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import Login from "./pages/Login/Login.tsx";
+import Dashboard from "./pages/Dashboard/Dashboard.tsx";
 
 const queryClient = new QueryClient();
 
@@ -21,8 +23,8 @@ const queryClient = new QueryClient();
       { path: "/checkout", element: <Checkout /> }, // Usa el componente Cart importado
     ],
   },
-  {path: "/login", element: <p>Login</p>},
-  {path: "/dashboard", element: <p>Dashboard</p>}
+  {path: "/login", element: <Login/>},
+  {path: "/dashboard", element: <Dashboard/>}
 ]);
 
 // Renderiza la aplicación

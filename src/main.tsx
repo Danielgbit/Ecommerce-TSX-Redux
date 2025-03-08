@@ -21,6 +21,8 @@ const queryClient = new QueryClient();
       { path: "/checkout", element: <Checkout /> }, // Usa el componente Cart importado
     ],
   },
+  {path: "/login", element: <p>Login</p>},
+  {path: "/dashboard", element: <p>Dashboard</p>}
 ]);
 
 // Renderiza la aplicación

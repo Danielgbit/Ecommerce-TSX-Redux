@@ -5,6 +5,7 @@
     justify-content: center;
     height: 100vh; 
     margin-top: 50px;
+    font-family: Poppins;
   }
   
   .formControlLogin {
@@ -16,6 +17,7 @@
   
   label {
     margin-bottom: 5px;
+    font-size: 14px
   }
   
   input {

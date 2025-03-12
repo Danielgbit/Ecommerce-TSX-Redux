@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './Dashboard.module.css'
 import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
   const navigate = useNavigate();
 
-  const [product, setProduct] = ({
+  const [product, setProduct] = useState({
     amiiboSeries: '',
     character: '',
     gameSeries: '',
@@ -22,7 +22,7 @@ const Dashboard = () => {
     setProduct({
       ...product,
       [e.target.name] : e.target.value
-    })
+    });
   };
 
   useEffect(() => {
@@ -37,20 +37,26 @@ const Dashboard = () => {
     navigate('/login');
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(product);
+    
+  };
+
   return (
     <div className={styles.container}>
         <div>
             <h1>Dashboard</h1>
             <button onClick={handleLogout}>Logout</button>
         </div>
-        <form>
+        <form onSubmit={handleSubmit}>
             <div className={styles.formControlLogin}>
                 <label className={styles.label} htmlFor="amiiboSeries">Amiibo Series</label>
                 <input 
                   type="text"
                   id='amiiboSeries'
                   name='amiiboSeries'
-                  value={''}
+                  value={product.amiiboSeries}
                   onChange={handleChange}
                   required
                 />
@@ -62,7 +68,7 @@ const Dashboard = () => {
                   type="text"
                   id='character'
                   name='character'
-                  value={''}
+                  value={product.character}
                   onChange={handleChange}
                   required
                 />
@@ -74,7 +80,7 @@ const Dashboard = () => {
                   type="text"
                   id='gameSeries'
                   name='gameSeries'
-                  value={''}
+                  value={product.gameSeries}
                   onChange={handleChange}
                   required
                 />
@@ -86,7 +92,7 @@ const Dashboard = () => {
                   type="text"
                   id='head'
                   name='head'
-                  value={''}
+                  value={product.head}
                   onChange={handleChange}
                   required
                 />
@@ -98,7 +104,7 @@ const Dashboard = () => {
                   type="url"
                   id='image'
                   name='image'
-                  value={''}
+                  value={product.image}
                   onChange={handleChange}
                   required
                 />
@@ -110,7 +116,7 @@ const Dashboard = () => {
                   type="date"
                   id='release'
                   name='release'
-                  value={''}
+                  value={product.release}
                   onChange={handleChange}
                   required
                 />
@@ -122,7 +128,19 @@ const Dashboard = () => {
                   type="text"
                   id='tail'
                   name='tail'
-                  value={''}
+                  value={product.tail}
+                  onChange={handleChange}
+                  required
+                />
+            </div>
+            <div className={styles.formControlLogin}>
+                <label className={styles.label} htmlFor="name">Name</label>
+                <input 
+                  className={styles.input}
+                  type="text"
+                  id='name'
+                  name='name'
+                  value={product.name}
                   onChange={handleChange}
                   required
                 />
@@ -134,7 +152,7 @@ const Dashboard = () => {
                   type="text"
                   id='type'
                   name='type'
-                  value={''}
+                  value={product.type}
                   onChange={handleChange}
                   required
                 />
@@ -146,7 +164,7 @@ const Dashboard = () => {
                   type="number"
                   id='price'
                   name='price'
-                  value={''}
+                  value={product.price}
                   onChange={handleChange}
                   required
                 />

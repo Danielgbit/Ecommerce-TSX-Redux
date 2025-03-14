@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import styles from './Dashboard.module.css'
-import { useNavigate } from 'react-router-dom';
+import { redirect, useNavigate } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
+import { Product } from '../../interface';
+import { createdProduct } from '../../services';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -12,11 +15,13 @@ const Dashboard = () => {
     head: '',
     image: '',
     name: '',
-    release: '',
+    release: '', // ✅ Ahora es un objeto Release
     tail: '',
     type: '',
-    price: 0
-  });
+    price: 0,
+    quantity: 1
+});
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setProduct({
@@ -37,11 +42,32 @@ const Dashboard = () => {
     navigate('/login');
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log(product);
-    
-  };
+  const mutation = useMutation({
+    mutationFn: async (newProduct: Product) => await createdProduct(newProduct),
+    onSuccess: () => {
+        alert("✅ Producto creado correctamente");
+        navigate('/');
+    },
+    onError: (error) => {
+        console.error("❌ Error al crear el producto:", error);
+        alert("❌ No se pudo crear el producto. Inténtalo de nuevo.");
+    }
+});
+
+
+
+
+const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+
+  if (product.price <= 0 || product.quantity <= 0) {
+      alert("⚠️ Price y quantity deben ser mayores a 0.");
+      return;
+  }
+
+  mutation.mutate(product);
+};
+
 
   return (
     <div className={styles.container}>

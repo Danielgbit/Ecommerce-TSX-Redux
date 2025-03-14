@@ -5,7 +5,7 @@ export interface Product {
     head:         string;
     image:        string;
     name:         string;
-    release?:      Release;
+    release?:      string;
     tail:         string;
     type:         string;
     id?:           number;
